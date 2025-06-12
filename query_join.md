@@ -101,15 +101,13 @@ WHERE `departments`.`id` = 5;
    `students`.`id`,
    `students`.`name`,
    `students`.`surname`,
-   COUNT(`exam_student`.`student_id`) as `attempts`,
-   # MAX(`exam_student`.`vote`) as `max_vote`,
-   MIN(`exam_student`.`vote`) as `min_vote`
+   COUNT(`exam_student`.`student_id`) as `attempts`
    FROM `students`
    INNER JOIN `exam_student`
    ON `students`.`id` = `exam_student`.`student_id`
    INNER JOIN	`exams`
    ON `exam_student`.`exam_id` = `exams`.`id`
-   WHERE `exam_student`.`vote` = 18
+   WHERE `exam_student`.`vote` >= 18
    GROUP BY `students`.`id`
    ORDER BY `students`.`id`;
 ```
